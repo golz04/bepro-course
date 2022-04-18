@@ -57,6 +57,8 @@ Route::post('/back-admin/user/store-employee', [AdminUserController::class, 'sto
 Route::put('/back-admin/user/{id}/reset-employee', [AdminUserController::class, 'resetEmployee']);
 Route::put('/back-admin/user/{id}/deactive-employee', [AdminUserController::class, 'deactiveEmployee']);
 Route::put('/back-admin/user/{id}/active-employee', [AdminUserController::class, 'activeEmployee']);
+Route::put('/back-admin/user/{id}/deactive-mentor', [AdminUserController::class, 'deactiveMentor']);
+Route::put('/back-admin/user/{id}/active-mentor', [AdminUserController::class, 'activeMentor']);
 
 Route::get('/back-admin/user/list-mentor', [AdminUserController::class, 'listMentor']);
 Route::get('/back-admin/user/add-mentor', [AdminUserController::class, 'addMentor']);
