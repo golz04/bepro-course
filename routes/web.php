@@ -5,6 +5,7 @@ use App\Http\Controllers\AdminDashboardController;
 use App\Http\Controllers\AdminDivisionPositionController;
 use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminCategoryCourseController;
+use App\Http\Controllers\AdminBenefitCourseController;
 use App\Http\Controllers\AdminCourseController;
 
 use App\Http\Controllers\MentorDashboardController;
@@ -71,6 +72,10 @@ Route::post('/back-admin/category-course/store-category-course', [AdminCategoryC
 Route::post('/back-admin/category-course/{id}/edit-category-course', [AdminCategoryCourseController::class, 'edit']);
 Route::put('/back-admin/category-course/{id}/update-category-course', [AdminCategoryCourseController::class, 'update']);
 Route::delete('/back-admin/category-course/{id}/destroy-category-course', [AdminCategoryCourseController::class, 'destroy']);
+
+Route::get('/back-admin/benefit-course/list-benefit-course', [AdminBenefitCourseController::class, 'index']);
+Route::post('/back-admin/benefit-course/store-benefit-course', [AdminBenefitCourseController::class, 'store']);
+Route::delete('/back-admin/benefit-course/{id}/destroy-benefit-course', [AdminBenefitCourseController::class, 'destroy']);
 
 Route::get('/back-admin/course/list-course', [AdminCourseController::class, 'index']);
 Route::get('/back-admin/course/add-course', [AdminCourseController::class, 'add']);
