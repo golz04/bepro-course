@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\MentorDashboardController;
 use App\Http\Controllers\MentorCategoryCourseController;
 use App\Http\Controllers\MentorCourseController;
+use App\Http\Controllers\MentorBenefitCourseController;
 
 use App\Http\Controllers\EmployeeDashboardController;
 use App\Http\Controllers\EmployeeCourseController;
@@ -100,6 +101,10 @@ Route::post('/back-mentor/course/store-course', [MentorCourseController::class, 
 Route::post('/back-mentor/course/{id}/edit-course', [MentorCourseController::class, 'edit']);
 Route::put('/back-mentor/course/{id}/update-course', [MentorCourseController::class, 'update']);
 Route::delete('/back-mentor/course/{id}/destroy-course', [MentorCourseController::class, 'destroy']);
+
+Route::get('/back-mentor/benefit-course/list-benefit-course', [MentorBenefitCourseController::class, 'index']);
+Route::post('/back-mentor/benefit-course/store-benefit-course', [MentorBenefitCourseController::class, 'store']);
+Route::delete('/back-mentor/benefit-course/{id}/destroy-benefit-course', [MentorBenefitCourseController::class, 'destroy']);
 
 
 // employee
