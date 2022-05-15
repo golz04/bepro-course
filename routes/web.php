@@ -7,6 +7,7 @@ use App\Http\Controllers\AdminUserController;
 use App\Http\Controllers\AdminCategoryCourseController;
 use App\Http\Controllers\AdminBenefitCourseController;
 use App\Http\Controllers\AdminCourseController;
+use App\Http\Controllers\AdminCourseModuleController;
 
 use App\Http\Controllers\MentorDashboardController;
 use App\Http\Controllers\MentorCategoryCourseController;
@@ -84,6 +85,13 @@ Route::post('/back-admin/course/store-course', [AdminCourseController::class, 's
 Route::post('/back-admin/course/{id}/edit-course', [AdminCourseController::class, 'edit']);
 Route::put('/back-admin/course/{id}/update-course', [AdminCourseController::class, 'update']);
 Route::delete('/back-admin/course/{id}/destroy-course', [AdminCourseController::class, 'destroy']);
+
+Route::get('/back-admin/course-module/list-course-module', [AdminCourseModuleController::class, 'index']);
+Route::get('/back-admin/course-module/add-course-module', [AdminCourseModuleController::class, 'add']);
+Route::post('/back-admin/course-module/store-course-module', [AdminCourseModuleController::class, 'store']);
+Route::post('/back-admin/course-module/{id}/edit-course-module', [AdminCourseModuleController::class, 'edit']);
+Route::put('/back-admin/course-module/{id}/update-course-module', [AdminCourseModuleController::class, 'update']);
+Route::delete('/back-admin/course-module/{id}/destroy-course-module', [AdminCourseModuleController::class, 'destroy']);
 
 
 // mentor
