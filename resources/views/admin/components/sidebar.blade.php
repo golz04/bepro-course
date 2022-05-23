@@ -215,7 +215,6 @@
                         </div>
                     </div>
                 </div>
-                
                 <div data-kt-menu-trigger="click" class="menu-item @if (Request::Segment(2) == 'course-module') here show @endif menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
@@ -248,13 +247,8 @@
                         </div>
                     </div>
                 </div>
-                
-                {{-- <div class="menu-item">
-                    <div class="menu-content pt-8 pb-0">
-                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Feedback</span>
-                    </div>
-                </div>
-                <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
+
+                <div data-kt-menu-trigger="click" class="menu-item @if (Request::Segment(2) == 'course-module-content') here show @endif menu-accordion">
                     <span class="menu-link">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
@@ -264,18 +258,32 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Feedback</span>
+                        <span class="menu-title">Course Modul Konten</span>
                         <span class="menu-arrow"></span>
                     </span>
-                    <div class="menu-sub menu-sub-accordion menu-active-bg">
+                    <div class="menu-sub menu-sub-accordion @if (Request::Segment(2) == 'course-module-content') menu-active-bg @endif">
                         <div class="menu-item">
-                            <a class="menu-link" href="#">
+                            <a class="menu-link @if (Request::Segment(3) == 'list-course-module-content') active @endif" href="{{url('/back-admin/course-module-content/list-course-module-content')}}">
                                 <span class="menu-bullet">
                                     <span class="bullet bullet-dot"></span>
                                 </span>
-                                <span class="menu-title">List Feedback</span>
+                                <span class="menu-title">List Modul Konten</span>
                             </a>
                         </div>
+                        <div class="menu-item">
+                            <a class="menu-link  @if (Request::Segment(3) == 'add-course-module-content') active @endif" href="{{url('/back-admin/course-module-content/add-course-module-content')}}">
+                                <span class="menu-bullet">
+                                    <span class="bullet bullet-dot"></span>
+                                </span>
+                                <span class="menu-title">Tambah Modul Konten</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                {{-- <div class="menu-item">
+                    <div class="menu-content pt-8 pb-0">
+                        <span class="menu-section text-muted text-uppercase fs-8 ls-1">Feedback</span>
                     </div>
                 </div>
                 <div data-kt-menu-trigger="click" class="menu-item menu-accordion">
