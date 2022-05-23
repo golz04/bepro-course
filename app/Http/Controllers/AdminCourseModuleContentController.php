@@ -134,14 +134,15 @@ class AdminCourseModuleContentController extends Controller
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function destroy($id)
     {
-        //
+        try {
+            CourseModuleContent::find($id)->delete();
+            return redirect('/back-admin/course-module-content/list-course-module-content')->withStatus('Berhasil menghapus data.');
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
     }
 }
