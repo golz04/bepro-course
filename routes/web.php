@@ -14,6 +14,8 @@ use App\Http\Controllers\MentorDashboardController;
 use App\Http\Controllers\MentorCategoryCourseController;
 use App\Http\Controllers\MentorCourseController;
 use App\Http\Controllers\MentorBenefitCourseController;
+use App\Http\Controllers\MentorCourseModuleController;
+use App\Http\Controllers\MentorCourseModuleContentController;
 
 use App\Http\Controllers\EmployeeDashboardController;
 use App\Http\Controllers\EmployeeCourseController;
@@ -121,6 +123,20 @@ Route::delete('/back-mentor/course/{id}/destroy-course', [MentorCourseController
 Route::get('/back-mentor/benefit-course/list-benefit-course', [MentorBenefitCourseController::class, 'index']);
 Route::post('/back-mentor/benefit-course/store-benefit-course', [MentorBenefitCourseController::class, 'store']);
 Route::delete('/back-mentor/benefit-course/{id}/destroy-benefit-course', [MentorBenefitCourseController::class, 'destroy']);
+
+Route::get('/back-mentor/course-module/list-course-module', [MentorCourseModuleController::class, 'index']);
+Route::get('/back-mentor/course-module/add-course-module', [MentorCourseModuleController::class, 'add']);
+Route::post('/back-mentor/course-module/store-course-module', [MentorCourseModuleController::class, 'store']);
+Route::post('/back-mentor/course-module/{id}/edit-course-module', [MentorCourseModuleController::class, 'edit']);
+Route::put('/back-mentor/course-module/{id}/update-course-module', [MentorCourseModuleController::class, 'update']);
+Route::delete('/back-mentor/course-module/{id}/destroy-course-module', [MentorCourseModuleController::class, 'destroy']);
+
+Route::get('/back-mentor/course-module-content/list-course-module-content', [MentorCourseModuleContentController::class, 'index']);
+Route::get('/back-mentor/course-module-content/add-course-module-content', [MentorCourseModuleContentController::class, 'add']);
+Route::post('/back-mentor/course-module-content/store-course-module-content', [MentorCourseModuleContentController::class, 'store']);
+Route::post('/back-mentor/course-module-content/{id}/edit-course-module-content', [MentorCourseModuleContentController::class, 'edit']);
+Route::put('/back-mentor/course-module-content/{id}/update-course-module-content', [MentorCourseModuleContentController::class, 'update']);
+Route::delete('/back-mentor/course-module-content/{id}/destroy-course-module-content', [MentorCourseModuleContentController::class, 'destroy']);
 
 
 // employee
