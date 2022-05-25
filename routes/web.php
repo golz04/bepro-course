@@ -145,3 +145,5 @@ Route::get('/back-employee/dashboard', [EmployeeDashboardController::class, 'ind
 Route::get('/back-employee/course/list-course', [EmployeeCourseController::class, 'index']);
 
 Route::post('/back-employee/enroll/enroll-course/{id}', [EmployeeEnrollController::class, 'store']);
+
+Route::get('/back-employee/my-course/list-course', [EmployeeCourseController::class, 'myCourse']);
