@@ -90,6 +90,45 @@
 
 @section('content')
 <div id="kt_content_container" class="container-xxl">
+    <div class="card">
+        <div class="card-body p-lg-17">
+            <div>
+                <div class="mb-10">
+                    <div class="text-center mb-15">
+                        <h3 class="fs-2hx text-dark mb-5">Tentang Materi</h3>
+                    </div>
+                    <div class="overlay">
+                        <iframe class="w-100" height="600" src="https://www.youtube.com/embed/t_4iTF_px9s" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    </div>
+                </div>
+                <div class="fs-5 fw-bold text-gray-600">
+                    <p>{{$getCourse->description}}</p>
+                </div>
+                <div class="row mt-12">
+                    <div class="col-md-12 pe-md-10 mb-10 mb-md-0">
+                        <h2 class="text-gray-800 fw-bolder mb-4">Benefit</h2>
+                        @foreach ($getBenefit as $itemBenefit)
+                        <div class="m-0">
+                            <div class="d-flex align-items-center collapsible py-3 toggle mb-0" data-bs-toggle="collapse" data-bs-target="#kt_job_4_1">
+                                <div class="btn btn-sm btn-icon mw-20px btn-active-color-primary me-5">
+                                    <span class="svg-icon toggle-on svg-icon-primary svg-icon-1">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+                                            <rect opacity="0.3" x="2" y="2" width="20" height="20" rx="5" fill="black" />
+                                            <rect x="10.8891" y="17.8033" width="12" height="2" rx="1" transform="rotate(-90 10.8891 17.8033)" fill="black" />
+                                            <rect x="6.01041" y="10.9247" width="12" height="2" rx="1" fill="black" />
+                                        </svg>
+                                    </span>
+                                </div>
+                                <h4 class="text-gray-700 fw-bolder cursor-pointer mb-0">{{$itemBenefit->benefit}}</h4>
+                            </div>
+                            <div class="separator separator-dashed"></div>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

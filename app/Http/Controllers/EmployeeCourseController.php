@@ -104,6 +104,10 @@ class EmployeeCourseController extends Controller
             $this->param['getCourseModuleContent'] = CourseModuleContent::orderBy('course_module_id', 'ASC')
                                                                         ->orderBy('ordinal', 'ASC')
                                                                         ->get(); //getCourseModuleContent
+            $this->param['getBenefit'] = CourseBenefit::where('course_id', $getCourseID)
+                                                        ->orderBy('id', 'ASC')
+                                                        ->get(); //getBenefit
+
             return view('employee.pages.my-course.detail', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
