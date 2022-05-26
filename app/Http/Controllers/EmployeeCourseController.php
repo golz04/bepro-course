@@ -9,6 +9,7 @@ use App\Models\CourseModuleContent;
 use App\Models\CourseCategory;
 use App\Models\CourseBenefit;
 use App\Models\Enroll;
+use App\Models\CourseReview;
 
 class EmployeeCourseController extends Controller
 {
@@ -109,6 +110,68 @@ class EmployeeCourseController extends Controller
                                                         ->get(); //getBenefit
 
             return view('employee.pages.my-course.detail', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
+    public function rateCourse($slug)
+    {
+        try{
+            $this->param['getCourse'] = Course::where('slug', $slug)
+                                                ->first(); //getCourse
+            $getCourseID = $this->param['getCourse']->id; //getCourseID
+            $this->param['getCourseModule'] = CourseModule::where('course_id', $getCourseID)
+                                                            ->orderBy('ordinal', 'ASC')
+                                                            ->get(); //getCourseModule
+            $this->param['getCourseModuleContent'] = CourseModuleContent::orderBy('course_module_id', 'ASC')
+                                                                        ->orderBy('ordinal', 'ASC')
+                                                                        ->get(); //getCourseModuleContent
+            $this->param['getBenefit'] = CourseBenefit::where('course_id', $getCourseID)
+                                                        ->orderBy('id', 'ASC')
+                                                        ->get(); //getBenefit
+
+            return view('employee.pages.my-course.rating-feedback', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
+    public function rateCourseSend($slug, Request $request)
+    {
+        $this->validate($request, 
+            [
+                'feedback' => 'required|min:4',
+                'rating' => 'required',
+            ],
+            [
+                'required' => ':attribute harus diisi.',
+                'feedback.min' => 'Minimal panjang karakter 4.',
+            ],
+            [
+                'feedback' => 'Pesan / feedback',
+                'rating' => 'Rating',
+            ],
+        );
+        try{
+            $this->param['getCourse'] = Course::where('slug', $slug)
+                                                ->first(); //getCourse
+            $getCourseID = $this->param['getCourse']->id; //getCourseID
+            $getUserLog = \Auth::user()->id;
+
+            $cReview = new CourseReview();
+            $cReview->user_id = $getUserLog;
+            $cReview->course_id = $getCourseID;
+            $cReview->rating = $request->rating;
+            $cReview->feedback = $request->feedback;
+            $cReview->save();
+
+            
+            return redirect()->back()->withStatus('Berhasil Memberi Rating dan Feedback.');
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

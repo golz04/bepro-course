@@ -145,5 +145,7 @@ Route::get('/back-employee/dashboard', [EmployeeDashboardController::class, 'ind
 Route::get('/back-employee/course/list-course', [EmployeeCourseController::class, 'index']);
 Route::get('/back-employee/my-course/list-course', [EmployeeCourseController::class, 'myCourse']);
 Route::get('/back-employee/my-course/{slug}/persiapan-course', [EmployeeCourseController::class, 'myCourseDetail']);
+Route::get('/back-employee/my-course/{slug}/rating-feedback', [EmployeeCourseController::class, 'rateCourse']);
+Route::post('/back-employee/my-course/{slug}/rating-feedback/send', [EmployeeCourseController::class, 'rateCourseSend']);
 
 Route::post('/back-employee/enroll/enroll-course/{id}', [EmployeeEnrollController::class, 'store']);
