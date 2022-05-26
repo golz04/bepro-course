@@ -35,7 +35,7 @@
                     </div>
                 </div>
                 <div class="menu-item">
-                    <a class="menu-link @if (Request::Segment(4) == 'persiapan-course') active @endif" href="{{url('/back-employee/my-course/list-course')}}">
+                    <a class="menu-link @if (Request::Segment(4) == 'persiapan-course') active @endif" href="{{url('/back-employee/my-course/'.$getCourse->slug.'/persiapan-course')}}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -57,7 +57,7 @@
                 @foreach ($getCourseModuleContent as $itemCourseModuleContent)
                     @if ($itemCourseModule->id == $itemCourseModuleContent->course_module_id)
                     <div class="menu-item">
-                        <a class="menu-link @if (Request::Segment(4) == 'course') active @endif" href="{{url('/back-employee/course/list-course')}}">
+                        <a class="menu-link @if (Request::Segment(4) == 'course') active @endif" href="{{url('/back-employee/my-course/'.$getCourse->slug.'/'.$itemCourseModule->slug.'/'.$itemCourseModuleContent->slug)}}">
                             <span class="menu-icon">
                                 <span class="svg-icon svg-icon-2">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
