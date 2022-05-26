@@ -13,7 +13,7 @@
 <div class="toolbar" id="kt_toolbar">
     <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
         <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
-            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Course - </span>&nbsp;List Course</h1>
+            <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">Home - Course - </span>&nbsp;List Course Saya</h1>
         </div>
     </div>
 </div>
@@ -41,7 +41,7 @@
                                 </div>
                             </div>
                             <div class="d-flex my-4">
-                                <a href="#" class="btn btn-sm btn-primary me-2" data-bs-toggle="modal" data-bs-target="#kt_modal_offer_a_deal">Lihat Detail</a>
+                                <a href="{{url('/back-employee/my-course/'.$item->slug).'/persiapan-course'}}" class="btn btn-sm btn-primary me-2">Lihat Detail</a>
                             </div>
                         </div>
                         <div class="d-flex flex-wrap">

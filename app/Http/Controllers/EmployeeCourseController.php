@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Course;
+use App\Models\CourseModule;
+use App\Models\CourseModuleContent;
 use App\Models\CourseCategory;
 use App\Models\CourseBenefit;
 use App\Models\Enroll;
@@ -83,6 +85,26 @@ class EmployeeCourseController extends Controller
                             ->get();
 
             return view('employee.pages.my-course.list', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
+    public function myCourseDetail($slug)
+    {
+        try{
+            $this->param['getCourse'] = Course::where('slug', $slug)
+                                                ->first(); //getCourse
+            $getCourseID = $this->param['getCourse']->id; //getCourseID
+            $this->param['getCourseModule'] = CourseModule::where('course_id', $getCourseID)
+                                                            ->orderBy('ordinal', 'ASC')
+                                                            ->get(); //getCourseModule
+            $this->param['getCourseModuleContent'] = CourseModuleContent::orderBy('course_module_id', 'ASC')
+                                                                        ->orderBy('ordinal', 'ASC')
+                                                                        ->get(); //getCourseModuleContent
+            return view('employee.pages.my-course.detail', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {

@@ -143,7 +143,7 @@ Route::delete('/back-mentor/course-module-content/{id}/destroy-course-module-con
 Route::get('/back-employee/dashboard', [EmployeeDashboardController::class, 'index']);
 
 Route::get('/back-employee/course/list-course', [EmployeeCourseController::class, 'index']);
+Route::get('/back-employee/my-course/list-course', [EmployeeCourseController::class, 'myCourse']);
+Route::get('/back-employee/my-course/{slug}/persiapan-course', [EmployeeCourseController::class, 'myCourseDetail']);
 
 Route::post('/back-employee/enroll/enroll-course/{id}', [EmployeeEnrollController::class, 'store']);
-
-Route::get('/back-employee/my-course/list-course', [EmployeeCourseController::class, 'myCourse']);
