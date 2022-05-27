@@ -103,6 +103,12 @@
         <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
             <h1 class="d-flex text-dark fw-bolder fs-5 align-items-center my-1"><span class="text-muted fw-normal">{{$getCourse->course_name}} - {{$getCourseModuleDetails->module_name}} - </span>&nbsp;{{$getCourseModuleContentDetails->title_module_content}}</h1>
         </div>
+        <div class="d-flex align-items-center gap-2 gap-lg-3">
+            <form action="{{url('/back-employee/my-course/'.$getCourse->slug.'/'.$getCourseModuleDetails->slug.'/'.$getCourseModuleContentDetails->slug.'/mark-done')}}" method="post">
+                @csrf
+                <button type="submit" class="btn btn-sm btn-primary">Tandai Sudah Dilihat</button>
+            </form>
+        </div>
     </div>
 </div>
 @endsection
@@ -114,8 +120,13 @@
             <div>
                 <div class="mb-10">
                     <div class="text-center mb-15">
-                        <h3 class="fs-2hx text-dark mb-5">{{$getCourseModuleContentDetails->title_module_content}} - [Status]</h3>
-                        <h3 class="fs-1hx text-dark mb-5">{{$getCourse->course_name}} - {{$getCourseModuleDetails->module_name}}</h3>
+                        <h3 class="fs-2hx text-dark mb-5">{{$getCourseModuleContentDetails->title_module_content}}</h3>
+                        <h3 class="fs-1hx text-dark mb-5">{{$getCourse->course_name}} - {{$getCourseModuleDetails->module_name}}</h3><br>
+                        @if ($getStatus == 'Sudah Selesai Dilihat')                        
+                            <span class="fs-1hx text-dark mt-5 rounded py-3 px-3" style="background-color: lightgreen;">{{$getStatus}}</span>
+                        @else
+                            <span class="fs-1hx text-dark mt-5 rounded py-3 px-3" style="background-color: lightcoral;">{{$getStatus}}</span>
+                        @endif
                     </div>
                     <div class="overlay">
                         <iframe class="w-100" height="600" src="{{$getCourseModuleContentDetails->video_link}}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
@@ -135,32 +146,46 @@
                                             <div class="symbol symbol-60px mb-5">
                                                 <img src="{{asset('image/pdf.svg')}}" alt="pdf-svg" />
                                             </div>
-                                            <div class="fs-5 fw-bolder mb-2">{{$getCourseModuleContentDetails->pdf_file}}</div>
+                                            <div class="fs-5 fw-bolder mb-2">{{$getCourseModuleContentDetails->pdf_file}}
+                                                <p>(Klik Untuk Mengunduh)</p>
+                                            </div>
                                         </a>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
-                                <div class="row mb-6">
-                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Assigment / Tugas</label>
-                                    <div class="col-lg-8 fv-row">
-                                        <input type="file" name="pdf_file" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 @error('pdf_file') is-invalid @enderror" placeholder="PDF File" />
-                                        @error('pdf_file')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>&nbsp; &nbsp; &nbsp;{{ $message }}</strong>
-                                            </span>
-                                        @enderror
+                                <form action="{{url('/back-employee/my-course/'.$getCourse->slug.'/'.$getCourseModuleDetails->slug.'/'.$getCourseModuleContentDetails->slug.'/assignment')}}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row mb-6">
+                                        <label class="col-lg-4 col-form-label fw-bold fs-6">Assigment / Tugas</label>
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="file" name="pdf_file" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0 @error('pdf_file') is-invalid @enderror" placeholder="PDF File" />
+                                            @error('pdf_file')
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>&nbsp; &nbsp; &nbsp;{{ $message }}</strong>
+                                                </span>
+                                            @enderror
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row mb-6">
-                                    <label class="col-lg-4 col-form-label fw-bold fs-6">Status Tugas</label>
-                                    <div class="col-lg-8 fv-row">
-                                        <input type="text" name="title_module_content" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="Belum Mengumpulan" disabled/>
+                                    @if ($getDataDone == null)
+                                    <div class="row mb-6">
+                                        <label class="col-lg-4 col-form-label fw-bold fs-6">Status Tugas</label>
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text" name="title_module_content" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="Belum Mengumpulan" disabled/>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="d-flex justify-content-end">
-                                    <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Simpan / Perbarui</button>
-                                </div>
+                                    @else
+                                    <div class="row mb-6">
+                                        <label class="col-lg-4 col-form-label fw-bold fs-6">Status Tugas</label>
+                                        <div class="col-lg-8 fv-row">
+                                            <input type="text" name="title_module_content" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="Sudah Mengumpulan" disabled/>
+                                        </div>
+                                    </div>
+                                    @endif
+                                    <div class="d-flex justify-content-end">
+                                        <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Simpan / Perbarui</button>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
