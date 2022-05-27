@@ -117,6 +117,38 @@ class EmployeeCourseController extends Controller
         }
     }
 
+    public function myCourseDetails($slugCourse, $slugModule, $slugContent)
+    {
+        try{
+            $this->param['getCourse'] = Course::where('slug', $slugCourse)
+                                                ->first(); //getCourse
+            $getCourseID = $this->param['getCourse']->id; //getCourseID
+            $this->param['getCourseModule'] = CourseModule::where('course_id', $getCourseID)
+                                                            ->orderBy('ordinal', 'ASC')
+                                                            ->get(); //getCourseModule
+            $this->param['getCourseModuleContent'] = CourseModuleContent::orderBy('course_module_id', 'ASC')
+                                                                        ->orderBy('ordinal', 'ASC')
+                                                                        ->get(); //getCourseModuleContent
+            $this->param['getBenefit'] = CourseBenefit::where('course_id', $getCourseID)
+                                                        ->orderBy('id', 'ASC')
+                                                        ->get(); //getBenefit
+
+            $this->param['getCourseModuleDetails'] = CourseModule::where('course_id', $getCourseID)
+                                                                    ->where('slug', $slugModule)
+                                                                    ->first();
+            $getModuleID = $this->param['getCourseModuleDetails']->id;
+            $this->param['getCourseModuleContentDetails'] = CourseModuleContent::where('course_module_id', $getModuleID)
+                                                                    ->where('slug', $slugContent)
+                                                                    ->first();
+
+            return view('employee.pages.my-course.details', $this->param);
+        } catch (\Exception $e) {
+            return redirect()->back()->withError($e->getMessage());
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
+        }
+    }
+
     public function rateCourse($slug)
     {
         try{
