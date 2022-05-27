@@ -34,10 +34,10 @@
                         <div class="d-flex justify-content-between align-items-start flex-wrap">
                             <div class="d-flex flex-column w-75">
                                 <div class="d-flex align-items-center mb-2">
-                                    <a href="#" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course_name}}</a>
+                                    <a href="{{url('/back-employee/my-course/'.$item->slug).'/persiapan-course'}}" class="text-gray-900 text-hover-primary fs-2 fw-bolder me-1">{{$item->course_name}}</a>
                                 </div>
                                 <div class="d-flex flex-wrap fw-bold fs-6 mb-4 pe-2">
-                                    <a href="#" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">{{$item->description}}</a>
+                                    <a href="{{url('/back-employee/my-course/'.$item->slug).'/persiapan-course'}}" class="d-flex align-items-center text-gray-400 text-hover-primary me-5 mb-2">{{ \Illuminate\Support\Str::limit($item->description, 250, $end='...') }}</a>
                                 </div>
                             </div>
                             <div class="d-flex my-4">
