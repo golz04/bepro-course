@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminBenefitCourseController;
 use App\Http\Controllers\AdminCourseController;
 use App\Http\Controllers\AdminCourseModuleController;
 use App\Http\Controllers\AdminCourseModuleContentController;
+use App\Http\Controllers\AdminCourseModuleQuizController;
 
 use App\Http\Controllers\MentorDashboardController;
 use App\Http\Controllers\MentorCategoryCourseController;
@@ -103,6 +104,12 @@ Route::post('/back-admin/course-module-content/{id}/edit-course-module-content',
 Route::put('/back-admin/course-module-content/{id}/update-course-module-content', [AdminCourseModuleContentController::class, 'update']);
 Route::delete('/back-admin/course-module-content/{id}/destroy-course-module-content', [AdminCourseModuleContentController::class, 'destroy']);
 
+Route::get('/back-admin/course-module-quiz/list-course-module-quiz', [AdminCourseModuleQuizController::class, 'index']);
+Route::get('/back-admin/course-module-quiz/add-course-module-quiz', [AdminCourseModuleQuizController::class, 'add']);
+Route::post('/back-admin/course-module-quiz/store-course-module-quiz', [AdminCourseModuleQuizController::class, 'store']);
+Route::post('/back-admin/course-module-quiz/{id}/edit-course-module-quiz', [AdminCourseModuleQuizController::class, 'edit']);
+Route::put('/back-admin/course-module-quiz/{id}/update-course-module-quiz', [AdminCourseModuleQuizController::class, 'update']);
+Route::delete('/back-admin/course-module-quiz/{id}/destroy-course-module-quiz', [AdminCourseModuleQuizController::class, 'destroy']);
 
 // mentor
 Route::get('/back-mentor/dashboard', [MentorDashboardController::class, 'index']);
