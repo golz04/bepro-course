@@ -17,6 +17,7 @@ use App\Http\Controllers\MentorCourseController;
 use App\Http\Controllers\MentorBenefitCourseController;
 use App\Http\Controllers\MentorCourseModuleController;
 use App\Http\Controllers\MentorCourseModuleContentController;
+use App\Http\Controllers\MentorCourseModuleQuizController;
 
 use App\Http\Controllers\EmployeeDashboardController;
 use App\Http\Controllers\EmployeeCourseController;
@@ -145,6 +146,12 @@ Route::post('/back-mentor/course-module-content/{id}/edit-course-module-content'
 Route::put('/back-mentor/course-module-content/{id}/update-course-module-content', [MentorCourseModuleContentController::class, 'update']);
 Route::delete('/back-mentor/course-module-content/{id}/destroy-course-module-content', [MentorCourseModuleContentController::class, 'destroy']);
 
+Route::get('/back-mentor/course-module-quiz/list-course-module-quiz', [MentorCourseModuleQuizController::class, 'index']);
+Route::get('/back-mentor/course-module-quiz/add-course-module-quiz', [MentorCourseModuleQuizController::class, 'add']);
+Route::post('/back-mentor/course-module-quiz/store-course-module-quiz', [MentorCourseModuleQuizController::class, 'store']);
+Route::post('/back-mentor/course-module-quiz/{id}/edit-course-module-quiz', [MentorCourseModuleQuizController::class, 'edit']);
+Route::put('/back-mentor/course-module-quiz/{id}/update-course-module-quiz', [MentorCourseModuleQuizController::class, 'update']);
+Route::delete('/back-mentor/course-module-quiz/{id}/destroy-course-module-quiz', [MentorCourseModuleQuizController::class, 'destroy']);
 
 // employee
 Route::get('/back-employee/dashboard', [EmployeeDashboardController::class, 'index']);
