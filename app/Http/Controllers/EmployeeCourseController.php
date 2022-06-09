@@ -201,8 +201,16 @@ class EmployeeCourseController extends Controller
             $this->param['getBenefit'] = CourseBenefit::where('course_id', $getCourseID)
                                                         ->orderBy('id', 'ASC')
                                                         ->get(); //getBenefit
+            
+            $this->param['getRating'] = CourseReview::where('user_id', \Auth::user()->id)
+                                                    ->where('course_id', $getCourseID)
+                                                    ->first();
+            if ($this->param['getRating'] == null) {
+                return view('employee.pages.my-course.rating-feedback', $this->param);
+            } else {
+                return view('employee.pages.my-course.rating-feedback-done', $this->param);
+            }
 
-            return view('employee.pages.my-course.rating-feedback', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
