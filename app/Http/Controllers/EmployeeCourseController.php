@@ -178,6 +178,12 @@ class EmployeeCourseController extends Controller
                 $this->param['getStatus'] = 'Sudah Selesai Dilihat';
             }
 
+            if ($this->param['getDataDone'] == null or $this->param['getDataDone']->assigment == null) {
+                $this->param['getStatuses'] = 'Belum Mengumpulkan';
+            } else {
+                $this->param['getStatuses'] = 'Sudah Mengumpulkan';
+            }
+
             return view('employee.pages.my-course.details', $this->param);
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());

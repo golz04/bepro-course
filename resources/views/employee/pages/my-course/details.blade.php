@@ -180,21 +180,12 @@
                                             @enderror
                                         </div>
                                     </div>
-                                    @if ($getDataDone == null)
                                     <div class="row mb-6">
                                         <label class="col-lg-4 col-form-label fw-bold fs-6">Status Tugas</label>
                                         <div class="col-lg-8 fv-row">
-                                            <input type="text" name="title_module_content" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="Belum Mengumpulan" disabled/>
+                                            <input type="text" name="title_module_content" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="{{$getStatuses}}" disabled/>
                                         </div>
                                     </div>
-                                    @else
-                                    <div class="row mb-6">
-                                        <label class="col-lg-4 col-form-label fw-bold fs-6">Status Tugas</label>
-                                        <div class="col-lg-8 fv-row">
-                                            <input type="text" name="title_module_content" class="form-control form-control-lg form-control-solid mb-3 mb-lg-0" value="Sudah Mengumpulan" disabled/>
-                                        </div>
-                                    </div>
-                                    @endif
                                     <div class="d-flex justify-content-end">
                                         <button type="submit" class="btn btn-primary" id="kt_account_profile_details_submit">Simpan / Perbarui</button>
                                     </div>
