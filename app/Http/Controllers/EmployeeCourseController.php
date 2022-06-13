@@ -180,8 +180,10 @@ class EmployeeCourseController extends Controller
 
             if ($this->param['getDataDone'] == null or $this->param['getDataDone']->assigment == null) {
                 $this->param['getStatuses'] = 'Belum Mengumpulkan';
+                $this->param['pdfDone'] = null;
             } else {
                 $this->param['getStatuses'] = 'Sudah Mengumpulkan';
+                $this->param['pdfDone'] = $this->param['getDataDone']->assigment;
             }
 
             return view('employee.pages.my-course.details', $this->param);
@@ -376,7 +378,7 @@ class EmployeeCourseController extends Controller
 
                 if ($request->file('pdf_file')) {
                     $request->file('pdf_file')->move('image/upload/course/user-upload/pdf-course-module-content', $getUserLog.\Auth::user()->name.$date.$random.$request->file('pdf_file')->getClientOriginalName());
-                    $cmcDone->assigment = $date.$random.$request->file('pdf_file')->getClientOriginalName();
+                    $cmcDone->assigment = $getUserLog.\Auth::user()->name.$date.$random.$request->file('pdf_file')->getClientOriginalName();
                 }
 
                 $cmcDone->save();
@@ -384,7 +386,7 @@ class EmployeeCourseController extends Controller
                 $cmcDone = CourseModuleContentDone::find($getDataDone->id);
                 if ($request->file('pdf_file')) {
                     $request->file('pdf_file')->move('image/upload/course/user-upload/pdf-course-module-content', $getUserLog.\Auth::user()->name.$date.$random.$request->file('pdf_file')->getClientOriginalName());
-                    $cmcDone->assigment = $date.$random.$request->file('pdf_file')->getClientOriginalName();
+                    $cmcDone->assigment = $getUserLog.\Auth::user()->name.$date.$random.$request->file('pdf_file')->getClientOriginalName();
                 }
                 $cmcDone->save();
             }

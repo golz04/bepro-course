@@ -191,6 +191,23 @@
                                     </div>
                                 </form>
                             </div>
+                            @if ($pdfDone != null)   
+                            <div class="col-md-12">
+                                <div class="card h-100">
+                                    <h2 class="text-center">File Yang Sudah Dikumpulkan</h2>
+                                    <div class="card-body d-flex justify-content-center text-center flex-column p-8">
+                                        <a href="{{asset('image/upload/course/user-upload/pdf-course-module-content/'.$pdfDone)}}" class="text-gray-800 text-hover-primary d-flex flex-column">
+                                            <div class="symbol symbol-60px mb-5">
+                                                <img src="{{asset('image/pdf.svg')}}" alt="pdf-svg" />
+                                            </div>
+                                            <div class="fs-5 fw-bolder mb-2">{{$pdfDone}}
+                                                <p>(Klik Untuk Mengunduh)</p>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
