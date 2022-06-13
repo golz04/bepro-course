@@ -426,7 +426,23 @@ class EmployeeCourseController extends Controller
                                                             ->orderBy('id', 'ASC')
                                                             ->get();
 
-            return view('employee.pages.my-course.quiz', $this->param);
+            $this->param['getQuizDone'] = \DB::table('report_quises')
+                                                ->select('report_quises.*')
+                                                ->join('course_module_quizes', 'report_quises.course_module_quiz_id', 'course_module_quizes.id')
+                                                ->join('course_modules', 'course_module_quizes.course_module_id', 'course_modules.id')
+                                                ->where('report_quises.user_id', \Auth::user()->id)
+                                                ->where('course_module_quizes.course_module_id', $getModuleID)
+                                                ->groupBy('report_quises.user_id', 'course_module_quizes.course_module_id')
+                                                ->first();
+
+            // dd($this->param['getQuizDone']);
+            
+            if($this->param['getQuizDone'] == null) {
+                return view('employee.pages.my-course.quiz', $this->param);
+            } else {
+                return view('employee.pages.my-course.quiz-done', $this->param);
+            }
+
         } catch (\Exception $e) {
             return redirect()->back()->withError($e->getMessage());
         } catch (\Illuminate\Database\QueryException $e) {
@@ -450,8 +466,11 @@ class EmployeeCourseController extends Controller
                 // ]);
                 $data[] = [
                     'course_module_quiz_id' => $questionID[$i],
+                    'user_id' => \Auth::user()->id,
                     'answer' => $answer[$i],
-                    'status' => 'not_corrected'
+                    'status' => 'not_corrected',
+                    'created_at' => now(),
+                    'updated_at' => now()
                 ];
             }
 
