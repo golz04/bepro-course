@@ -4,6 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
+use Maatwebsite\Excel\Facades\Excel;
+use App\Exports\ExportEmployeeQuiz;
+
 class AdminReportQuizController extends Controller
 {
     public function __construct()
@@ -31,5 +34,10 @@ class AdminReportQuizController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect()->back()->withError('Terjadi kesalahan pada database', $e->getMessage());
         }
+    }
+
+    public function exportEmployeesQuiz(){
+        $excel = Excel::download(new ExportEmployeeQuiz, 'export-employee-quiz-nilai.xlsx');
+        return $excel;
     }
 }

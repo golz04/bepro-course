@@ -121,6 +121,7 @@ Route::get('/back-admin/report-quiz/{idUser}/{slugCourse}/{slugModule}/detail', 
 Route::put('/back-admin/report-quiz/update-quiz-user', [AdminProgressEmployeeController::class, 'updateQuizUser']);
 
 Route::get('/back-admin/report-quiz/list-report-quiz', [AdminReportQuizController::class, 'index']);
+Route::get('/back-admin/report-quiz/export', [AdminReportQuizController::class, 'exportEmployeesQuiz']);
 
 // mentor
 Route::get('/back-mentor/dashboard', [MentorDashboardController::class, 'index']);
