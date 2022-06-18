@@ -115,6 +115,11 @@ Route::delete('/back-admin/course-module-quiz/{id}/destroy-course-module-quiz', 
 
 Route::get('/back-admin/progress-employee/list-progress-employee', [AdminProgressEmployeeController::class, 'index']);
 Route::post('/back-admin/progress-employee/detail-progress-employee/{id}', [AdminProgressEmployeeController::class, 'detail']);
+Route::get('/back-admin/progress-employee/report-quiz/{idUser}/{slugCourse}/persiapan-course', [AdminProgressEmployeeController::class, 'reportQuiz']);
+Route::get('/back-admin/report-quiz/{idUser}/{slugCourse}/{slugModule}/detail', [AdminProgressEmployeeController::class, 'detailQuiz']);
+Route::put('/back-admin/report-quiz/update-quiz-user', [AdminProgressEmployeeController::class, 'updateQuizUser']);
+
+// Route::get('/back-admin/report-quiz/list-report-quiz', [AdminProgressEmployeeController::class, 'index']);
 
 // mentor
 Route::get('/back-mentor/dashboard', [MentorDashboardController::class, 'index']);
