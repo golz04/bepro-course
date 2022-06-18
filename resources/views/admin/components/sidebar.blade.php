@@ -320,8 +320,8 @@
                         <span class="menu-title">Penilaian Progress Karyawan</span>
                     </a>
                 </div>
-                {{-- <div class="menu-item">
-                    <a class="menu-link @if (Request::Segment(2) == 'progress-employee') active @endif" href="{{url('/back-admin/progress-employee/list-progress-employee')}}">
+                <div class="menu-item">
+                    <a class="menu-link @if (Request::Segment(2) == 'report-quiz') active @endif" href="{{url('/back-admin/report-quiz/list-report-quiz')}}">
                         <span class="menu-icon">
                             <span class="svg-icon svg-icon-2">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -329,9 +329,9 @@
                                 </svg>
                             </span>
                         </span>
-                        <span class="menu-title">Penilaian Quiz</span>
+                        <span class="menu-title">Nilai Karyawan</span>
                     </a>
-                </div> --}}
+                </div>
                 
 
                 {{-- 

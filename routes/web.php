@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminCourseModuleController;
 use App\Http\Controllers\AdminCourseModuleContentController;
 use App\Http\Controllers\AdminCourseModuleQuizController;
 use App\Http\Controllers\AdminProgressEmployeeController;
+use App\Http\Controllers\AdminReportQuizController;
 
 use App\Http\Controllers\MentorDashboardController;
 use App\Http\Controllers\MentorCategoryCourseController;
@@ -119,7 +120,7 @@ Route::get('/back-admin/progress-employee/report-quiz/{idUser}/{slugCourse}/pers
 Route::get('/back-admin/report-quiz/{idUser}/{slugCourse}/{slugModule}/detail', [AdminProgressEmployeeController::class, 'detailQuiz']);
 Route::put('/back-admin/report-quiz/update-quiz-user', [AdminProgressEmployeeController::class, 'updateQuizUser']);
 
-// Route::get('/back-admin/report-quiz/list-report-quiz', [AdminProgressEmployeeController::class, 'index']);
+Route::get('/back-admin/report-quiz/list-report-quiz', [AdminReportQuizController::class, 'index']);
 
 // mentor
 Route::get('/back-mentor/dashboard', [MentorDashboardController::class, 'index']);
